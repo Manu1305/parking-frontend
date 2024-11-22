@@ -6,11 +6,11 @@ const WalletDashboard = () => {
   const [balance, setBalance] = useState(0);
   const [rechargeAmount, setRechargeAmount] = useState("");
   const token = localStorage.getItem("token");
-const navigate = useNavigate()
+  const navigate = useNavigate();
   // Fetch wallet balance
   const fetchBalance = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/wallet", {
+      const response = await axios.get("http://51.21.129.112/api/wallet", {
         headers: {
           Authorization: `Bearer ${token}`, // Include token in the header
         },
@@ -29,17 +29,17 @@ const navigate = useNavigate()
     }
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/wallet/top-up",
+        "http://51.21.129.112/api/wallet/top-up",
         { amount: parseInt(rechargeAmount) },
         {
           headers: {
-            Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       alert(response.data.message);
-      fetchBalance(); 
-      navigate('/dashboard')
+      fetchBalance();
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error recharging wallet:", error);
       alert("Recharge failed.");

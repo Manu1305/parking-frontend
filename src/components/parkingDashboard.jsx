@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import io from "socket.io-client"; 
+import io from "socket.io-client";
 
 const ParkingDashboard = () => {
   const [parkingSpots, setParkingSpots] = useState([]);
@@ -25,7 +25,7 @@ const ParkingDashboard = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:5000/api/parking/spots",
+          "http://51.21.129.112/api/parking/spots",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -45,7 +45,7 @@ const ParkingDashboard = () => {
     const fetchBalance = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:5000/api/wallet", {
+        const response = await axios.get("http://51.21.129.112/api/wallet", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -71,8 +71,7 @@ const ParkingDashboard = () => {
       checkLowBalance();
     }, 10 * 60 * 1000);
 
-    const socket = io("http://localhost:5000"); 
-
+    const socket = io("http://51.21.129.112");
 
     socket.on("parkingUpdate", (updatedSpots) => {
       setParkingSpots(updatedSpots);
@@ -80,7 +79,7 @@ const ParkingDashboard = () => {
 
     return () => {
       clearInterval(intervalId);
-      socket.disconnect(); 
+      socket.disconnect();
     };
   }, [balance, navigate]);
 
@@ -93,7 +92,7 @@ const ParkingDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5000/api/parking/book",
+        "http://51.21.129.112/api/parking/book",
         {
           spotId: spotId,
           durationHours: duration,

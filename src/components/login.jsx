@@ -11,19 +11,15 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(""); 
+    setError("");
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post("http://51.21.129.112/api/auth/login", {
+        email,
+        password,
+      });
       const { token } = response.data;
 
       localStorage.setItem("token", token);
-
 
       navigate("/dashboard");
     } catch (err) {
@@ -85,11 +81,11 @@ const Login = () => {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={()=>{
-                navigate("/register");
+            onClick={() => {
+              navigate("/register");
             }}
           >
-           Register
+            Register
           </Button>
         </Box>
       </Box>
