@@ -20,7 +20,7 @@ const BookingHistory = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://51.21.129.112/api/parking/bookings",
+          "https://51.21.129.112/api/parking/bookings",
           {
             headers: {
               Authorization: `Bearer ${token}`,

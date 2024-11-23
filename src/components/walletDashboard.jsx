@@ -10,7 +10,7 @@ const WalletDashboard = () => {
   // Fetch wallet balance
   const fetchBalance = async () => {
     try {
-      const response = await axios.get("http://51.21.129.112/api/wallet", {
+      const response = await axios.get("https://51.21.129.112/api/wallet", {
         headers: {
           Authorization: `Bearer ${token}`, // Include token in the header
         },
@@ -29,7 +29,7 @@ const WalletDashboard = () => {
     }
     try {
       const response = await axios.post(
-        "http://51.21.129.112/api/wallet/top-up",
+        "https://51.21.129.112/api/wallet/top-up",
         { amount: parseInt(rechargeAmount) },
         {
           headers: {

@@ -13,10 +13,13 @@ const Login = () => {
     e.preventDefault();
     setError("");
     try {
-      const response = await axios.post("http://51.21.129.112/api/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://51.21.129.112/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
       const { token } = response.data;
 
       localStorage.setItem("token", token);

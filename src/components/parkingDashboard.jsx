@@ -25,7 +25,7 @@ const ParkingDashboard = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://51.21.129.112/api/parking/spots",
+          "https://51.21.129.112/api/parking/spots",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -45,7 +45,7 @@ const ParkingDashboard = () => {
     const fetchBalance = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://51.21.129.112/api/wallet", {
+        const response = await axios.get("https://51.21.129.112/api/wallet", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -71,7 +71,7 @@ const ParkingDashboard = () => {
       checkLowBalance();
     }, 10 * 60 * 1000);
 
-    const socket = io("http://51.21.129.112");
+    const socket = io("https://51.21.129.112");
 
     socket.on("parkingUpdate", (updatedSpots) => {
       setParkingSpots(updatedSpots);
@@ -92,7 +92,7 @@ const ParkingDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://51.21.129.112/api/parking/book",
+        "https://51.21.129.112/api/parking/book",
         {
           spotId: spotId,
           durationHours: duration,

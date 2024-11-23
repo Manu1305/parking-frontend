@@ -13,7 +13,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://51.21.129.112/api/auth/register",
+        "https://51.21.129.112/api/auth/register",
         {
           name,
           email,
