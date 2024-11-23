@@ -10,6 +10,7 @@ import {
   Button,
 } from "@mui/material";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const BookingHistory = () => {
   const [bookings, setBookings] = useState([]);
@@ -32,7 +33,7 @@ const BookingHistory = () => {
       } catch (err) {
         console.error("Error fetching booking history:", err);
         setLoading(false);
-        alert("Failed to load booking history. Please try again.");
+        toast("Failed to load booking history. Please try again.");
       }
     };
 

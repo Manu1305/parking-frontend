@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, TextField, Button, Typography, Container } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -20,10 +21,10 @@ const Register = () => {
           password,
         }
       );
-      alert("Registration successful! Please login.");
+      toast("Registration successful! Please login.");
       navigate("/login");
     } catch (err) {
-      alert(err.response?.data?.message || "Registration failed. Try again!");
+      toast(err.response?.data?.message || "Registration failed. Try again!");
     }
   };
 

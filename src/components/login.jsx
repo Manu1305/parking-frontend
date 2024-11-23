@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Box, TextField, Button, Typography, Container } from "@mui/material";
 import axios from "axios"; // For making API calls
 import { useNavigate } from "react-router-dom";
-
+ import { ToastContainer, toast } from "react-toastify";
+ import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,6 +27,7 @@ const Login = () => {
 
       navigate("/dashboard");
     } catch (err) {
+
       setError(
         err.response?.data?.message || "Login failed. Please try again."
       );

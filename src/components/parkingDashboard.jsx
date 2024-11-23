@@ -12,6 +12,7 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import io from "socket.io-client";
+import { toast } from "react-toastify";
 
 const ParkingDashboard = () => {
   const [parkingSpots, setParkingSpots] = useState([]);
@@ -37,7 +38,7 @@ const ParkingDashboard = () => {
       } catch (err) {
         console.error("Error fetching parking spots:", err);
         setLoading(false);
-        alert("Unauthorized! Please log in again.");
+        toast("Unauthorized! Please log in again.");
         navigate("/login");
       }
     };
@@ -53,13 +54,13 @@ const ParkingDashboard = () => {
         setBalance(response.data.balance);
       } catch (err) {
         console.error("Error fetching wallet balance:", err);
-        alert("Failed to fetch wallet balance.");
+        toast("Failed to fetch wallet balance.");
       }
     };
 
     const checkLowBalance = () => {
       if (balance < 50) {
-        alert("Low balance! Please recharge your wallet.");
+        toast("Low balance! Please recharge your wallet.");
       }
     };
 
@@ -85,7 +86,7 @@ const ParkingDashboard = () => {
 
   const handleBookSpot = async (spotId) => {
     if (balance < 50) {
-      alert("Insufficient balance! Please recharge to book a parking spot.");
+      toast("Insufficient balance! Please recharge to book a parking spot.");
       return;
     }
 
@@ -103,10 +104,10 @@ const ParkingDashboard = () => {
           },
         }
       );
-      alert(response.data.message || "Spot booked successfully!");
+      toast(response.data.message || "Spot booked successfully!");
     } catch (err) {
       console.error("Error booking the spot:", err);
-      alert(err.response?.data?.error || "Failed to book the spot.");
+      toast(err.response?.data?.error || "Failed to book the spot.");
     }
   };
 

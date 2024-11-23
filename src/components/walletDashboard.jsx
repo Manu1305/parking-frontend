@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const WalletDashboard = () => {
   const [balance, setBalance] = useState(0);
@@ -24,7 +25,7 @@ const WalletDashboard = () => {
   // Recharge wallet
   const rechargeWallet = async () => {
     if (!rechargeAmount) {
-      alert("Please enter an amount.");
+      toast("Please enter an amount.");
       return;
     }
     try {
@@ -37,12 +38,12 @@ const WalletDashboard = () => {
           },
         }
       );
-      alert(response.data.message);
+      toast(response.data.message);
       fetchBalance();
       navigate("/dashboard");
     } catch (error) {
       console.error("Error recharging wallet:", error);
-      alert("Recharge failed.");
+      toast("Recharge failed.");
     }
   };
 

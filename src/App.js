@@ -7,7 +7,8 @@
   import Register from './components/Register';
   import BookingHistory from './components/BookingHistory';
   import WalletDashboard from './components/walletDashboard';
-
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
   const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem('token'); 
     console.log(children,'children',token,'token')
@@ -60,6 +61,7 @@
             />
           </Routes>
         </Router>
+        <ToastContainer />
       </ThemeProvider>
     );
   };
